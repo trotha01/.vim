@@ -6,12 +6,13 @@
 " " Catered to the needs and woes of a Tufts University Comp40 student
 " " Contact Marshall @ mmoutenot@gmail.com with questions or comments.
 "
+
 " Necessary for a lot of cool vim things
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/vundle/,$HOME/.vim/bundle/vundle
+call vundle#rc('$HOME/.vim/bundle/')
 
 " let Vundle manage Vundle
 " required!
@@ -20,12 +21,12 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
-Bundle 'ervandew/supertab'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'wincent/Command-T'
-Bundle 'vim-scripts/right_align'
+Bundle 'ervandew\supertab'
+Bundle 'tomtom\tcomment_vim'
+Bundle 'tpope\vim-fugitive'
+Bundle 'tpope\vim-surround'
+Bundle 'wincent\Command-T'
+Bundle 'vim-scripts\right_align'
 
 " Snipmate and dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -169,7 +170,7 @@ syntax enable "Enable syntax hl
 " Set font according to system
 " if you're using a mac
 set gfn=Menlo:h12
-set shell=/bin/bash
+" set shell=/bin/bash
 
 " if you're using windows
 "set gfn=Bitstream\ Vera\ Sans\ Mono:h10
