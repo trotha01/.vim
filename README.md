@@ -2,6 +2,7 @@
 
   Quickstart
   ----------
+
   Make sure you have [Git][] and [Vim][] installed
   and they are in your [path][].
 
@@ -26,7 +27,7 @@ Bundles
 * [Snipmate-snippets][]
 * [Supertab][]
 * [Tcomment][]
-* [Tlib][]
+* [Tlib\_vim][]
 * [vim-addon-mw-utils][]
 * [Vim-conque][]
 * [Vim-fugitive][]
@@ -47,7 +48,7 @@ Bundles
 [Snipmate-snippets]: https://github.com/honza/snipmate-snippets
 [Supertab]: https://github.com/ervandew/supertab
 [Tcomment]: https://github.com/tomtom/tcomment_vim
-[Tlib_vim]: https://github.com/tomtom/tlib_vim
+[Tlib\_vim]: https://github.com/tomtom/tlib_vim
 [vim-addon-mw-utils]: https://github.com/MarcWeber/vim-addon-mw-utils
 [Vim-conque]: https://github.com/rson/vim-conque
 [Vim-fugitive]: https://github.com/tpope/vim-fugitive
