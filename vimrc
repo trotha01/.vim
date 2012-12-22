@@ -8,6 +8,7 @@
 "
 
 " Necessary for a lot of cool vim things
+
 set nocompatible
 filetype off
 
@@ -40,14 +41,17 @@ Bundle 'vim-scripts/Align'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/nerdtree-ack'
 
-
 "{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
-set autochdir
+" backwards compatible
+autocmd BufEnter * silent! lcd %:p:h
 
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+
+" Auto reload vimrc when saved
+" au! BufWritePost $HOME/.vim/vimrc nested source %
 
 " Restore cursor position to where it was before
 augroup JumpCursorOnEdit
@@ -89,14 +93,14 @@ set cmdheight=2
 " Folding Stuffs
 " I find this one a little annoying sometimes
 " set foldmethod=marker
-set wrap
-set textwidth=80
-let g:RightAlign_RightBorder=80
-if exists('+colorcolumn')
-  set colorcolumn=80
-else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
+" set wrap
+" set textwidth=80
+" let g:RightAlign_RightBorder=80
+" if exists('+colorcolumn')
+  " set colorcolumn=80
+" else
+  " au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+" endif
 
 " Syntax Higlighting
 filetype off
@@ -169,14 +173,15 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 " if you're using a mac
-set gfn=Menlo:h12
+" set gfn=Menlo:h12
 " set shell=/bin/bash
 
 " if you're using windows
-"set gfn=Bitstream\ Vera\ Sans\ Mono:h10
+" set gfn=Bitstream\ Vera\ Sans\ Mono:h10
 
 " if you're using linux
-"  set gfn=Monospace\ 10
+" height 12 points
+set gfn=Lucida\ Console:h12
 "  set shell=/bin/bash
 
 set guioptions-=T
@@ -213,8 +218,14 @@ set novisualbell
 set t_vb=
 set tm=500
 
-set backupdir=~/.tmp
-set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
+
+silent! call mkdir($HOME."\\.tmp")
+" Errors will occur if backup/tmp directory doesn't exist
+
+set backupdir=$HOME/.tmp// " Set directory for backup files
+set directory=$HOME/.tmp// " Set directory for swap files
+" two slashes keep full path name when file is saved to prevent file
+" collisions with files of the same name
 
 " }}}
 
@@ -493,3 +504,23 @@ map <leader>g "syiw:Grep^Rs<cr>
 " Always show line numbers and current position
 set ruler
 set number
+
+"{{{ Reload vimrc
+  " remove all autocommands
+  " reset options to defaults
+  " :source vimrc's
+if !exists("*ReloadVimrc")
+  function! ReloadVimrc()
+    au!
+    set all&
+    so $VIM/_vimrc
+    so $HOME/.vim/vimrc
+    set filetype=vim
+  endfunction
+endif
+"}}}
+noremap <leader>rvi <Esc>:call ReloadVimrc()<CR>
+
+augroup myvimrc
+  " au BufWritePost vimrc call ReloadVimrc()
+augroup END
