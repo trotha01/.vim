@@ -1,8 +1,8 @@
-  Project Forked from mmoutenot/Vimrc
-  ===================================
+Project Forked from mmoutenot/Vimrc  
+===================================
 
-  Quickstart
-  ----------
+Quickstart  
+----------
 
   Make sure you have [Git][] and [Vim][] installed
   and they are in your [path][].
@@ -11,8 +11,8 @@
   2. Open any file with vim and run :BundleInstall!
   3. Add 'source $HOME\.vim\vimrc' to your .vimrc or \_vimrc
 
-  Details
-  -------
+Details  
+-------
 * Ensure both git and vim are in your path
 * Ensure vim shell variable is correct
 
