@@ -1,3 +1,5 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIMRC (pieces picked from multiple sources, primarily
 " "   http://www.vim.org/scripts/script.php?script_id=760
 " "   http://amix.dk/vim/vimrc.html
@@ -5,56 +7,24 @@
 "
 " " Catered to the needs and woes of a Tufts University Comp40 student
 " " Contact Marshall @ mmoutenot@gmail.com with questions or comments.
-"
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Options
+" => Bundles
+" => Variables
+" => Syntax
+" => Autocmds
+" => Commands
+" => Mappings
+" => Quickfix
+" => Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
-" -------------------- BUNDLES --------------------
-" {{{
-set rtp+=$HOME/.vim/bundle/vundle
-call vundle#rc('$HOME/.vim/bundle/')
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
-"
-" original repos on github
-Bundle 'ervandew\supertab'
-Bundle 'tomtom\tcomment_vim'
-Bundle 'tpope\vim-fugitive'
-Bundle 'tpope\vim-surround'
-Bundle 'wincent\Command-T'
-Bundle 'vim-scripts\right_align'
-
-" Snipmate and dependencies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
-Bundle 'garbas/vim-snipmate'
-
-Bundle 'scrooloose/nerdtree'
-Bundle 'rson/vim-conque'
-Bundle 'vim-scripts/Align'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/nerdtree-ack'
-" END Bundles
-" }}}
-
-
-" -------------------- VARIABLES --------------------
-" {{{
-let mapleader = ","
-
-" For linux clipboard register
-let g:clipbrdDefaultReg = '+'
-" END VARIABLES
-" }}}
-
-
-" -------------------- OPTIONS --------------------
-" {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      OPTIONS
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 set number "line numbers
 set showcmd "show :command at bottom
@@ -165,12 +135,58 @@ try
 catch
 endtry
 
-" END OPTIONS }}}
+" END OPTIONS
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" -------------------- SYNTAX --------------------
-" {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                   BUNDLES
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=$HOME/.vim/bundle/vundle
+call vundle#rc('$HOME/.vim/bundle/')
 
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'ervandew\supertab'
+Bundle 'tomtom\tcomment_vim'
+Bundle 'tpope\vim-fugitive'
+Bundle 'tpope\vim-surround'
+Bundle 'wincent\Command-T'
+Bundle 'vim-scripts\right_align'
+
+" Snipmate and dependencies
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle 'garbas/vim-snipmate'
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'rson/vim-conque'
+Bundle 'vim-scripts/Align'
+Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/nerdtree-ack'
+" END Bundles
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      VARIABLES
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = ","
+
+" For linux clipboard register
+let g:clipbrdDefaultReg = '+'
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      SYNTAX
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 colorscheme ir_black
 
@@ -190,11 +206,12 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " END SYNTAX
-" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" -------------------- AUTOCMDS --------------------
-" {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      AUTOCMDS
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Automatically cd to current directory
 " backwards compatible
@@ -249,18 +266,19 @@ augroup Colors
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 augroup END
 " END AUTOCMDS
-" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-" -------------------- COMMANDS --------------------
-" {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      COMMANDS
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 command! -nargs=1 Grep :call Grep("<args>")
 " END COMMANDS
-" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" -------------------- MAPPINGS --------------------
-"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      MAPPINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
@@ -389,19 +407,27 @@ map <leader>g "syiw:Grep^Rs<cr>
 
 noremap <leader>rv <Esc>:call ReloadVimrc()<CR>
 " END MAPPINGS
-" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" -------------------- QUICKFIX --------------------
-" {{{
-set makeprg=./compile " :make runs this script!
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      QUICKFIX
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+if MySys() == "Windows"
+  au FileType cpp set makeprg=g++\ %\ -o\ run
+  "set shellpipe=\ 
+  set makeprg=g++\ %\ -o\ run
+  compiler! gcc
+else
+  set makeprg=./compile " :make runs this script!
+endif
 " END QUICKFIX
-" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
-" -------------------- FUNCTIONS --------------------
-"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      FUNCTIONS
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "{{{ Open URL in Browser
 function! Browser()
@@ -566,5 +592,4 @@ endif
 " }}}
 
 " END FUNCTIONS
-" }}}
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""
