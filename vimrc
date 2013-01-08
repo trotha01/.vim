@@ -173,6 +173,7 @@ Bundle 'vim-scripts/nerdtree-ack'
 " END Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      VARIABLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -180,13 +181,14 @@ let mapleader = ","
 
 " For linux clipboard register
 let g:clipbrdDefaultReg = '+'
+" END VARIABLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
 syntax enable "Enable syntax hl
 colorscheme ir_black
 
@@ -220,6 +222,11 @@ augroup DirectoryChange
   autocmd BufEnter * silent! lcd %:p:h
 augroup END
 
+augroup templates
+  au!
+  autocmd BufNewFile * silent! 0r $LOCAL_VIMRC_DIR/templates/%:e.txt
+augroup END
+  
 " Remove any trailing whitespace that is in the file
 " Don't remove if file is .md file
 augroup FileEdit
@@ -255,10 +262,9 @@ augroup JumpCursorOnEdit
         \ endif
 augroup END
 
-"Uncomment if you want to reload vimrc after saving
 augroup reload
   au!
-" au BufWritePost vimrc call ReloadVimrc()
+  au BufWritePost vimrc call ReloadVimrc()
 augroup END
 
 augroup Colors
@@ -267,6 +273,7 @@ augroup Colors
 augroup END
 " END AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      COMMANDS
