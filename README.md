@@ -4,12 +4,13 @@ Project Forked from mmoutenot/Vimrc
 Quickstart  
 ----------
 
-  Make sure you have [Git][] and [Vim][] installed
-  and they are in your [path][].
+  Make sure you have [Git][] and [Vim][] installed  
+  and they are in your [path][].  
+  This will create a local vimrc
 
   1. cd to home directory and git clone https://github.com/trotha01/.vim.git
   2. Open any file with vim and run :BundleInstall!
-  3. Add 'source $HOME\.vim\vimrc' to your .vimrc or \_vimrc
+  3. Add 'source $HOME/.vim/vimrc' to your global .vimrc or _vimrc
 
 Details  
 -------
