@@ -36,6 +36,15 @@ filetype on
 filetype plugin on " filetype plugins
 filetype indent on " filetype specific indenting
 
+" Latex-Suite options
+set shellslash
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+" TIP: if you write your \label's as \label{fig:something}, then if you
+" type in \ref{fig: and press <C-n> you will automatically cycle through
+" all the figure labels. Very useful!
+set iskeyword+=:
+
 set autoread " read a file when it is changed from the outside
 
 " Use grep
@@ -177,7 +186,7 @@ Bundle 'vim-scripts/nerdtree-ack'
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      VARIABLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = ","
+let mapleader = "."
 
 " For linux clipboard register
 let g:clipbrdDefaultReg = '+'
@@ -226,12 +235,13 @@ augroup templates
   au!
   autocmd BufNewFile * silent! 0r $LOCAL_VIMRC_DIR/templates/%:e.txt
 augroup END
-  
+
 " Remove any trailing whitespace that is in the file
-" Don't remove if file is .md file
+" Don't remove if file is '.md' or '.vim' file
 augroup FileEdit
+  au!
   autocmd BufRead,BufWrite *
-    \ if ! &bin && ! &ft =~ 'md'|
+    \ if ! &bin && ! &ft =~ 'markdown' && ! &ft =~ 'vim'|
     \   silent! %s/\s\+$//ge |
     \ endif
 augroup END
@@ -264,7 +274,7 @@ augroup END
 
 augroup reload
   au!
-  au BufWritePost vimrc call ReloadVimrc()
+  autocmd BufWritePost vimrc call ReloadVimrc()
 augroup END
 
 augroup Colors
@@ -286,6 +296,9 @@ command! -nargs=1 Grep :call Grep("<args>")
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Split Terminal
+noremap <Leader>tt :vsplit \| :ConqueTerm Powershell.exe<CR><ESC><C-w>ri
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
@@ -419,16 +432,17 @@ noremap <leader>rv <Esc>:call ReloadVimrc()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      QUICKFIX
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-if MySys() == "Windows"
-  au FileType cpp set makeprg=g++\ %\ -o\ run
-  "set shellpipe=\ 
-  set makeprg=g++\ %\ -o\ run
-  compiler! gcc
-else
-  set makeprg=./compile " :make runs this script!
-endif
-" END QUICKFIX
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" if MySys() == "Windows"
+      " set shell C:/Windows/system32/cmd.exe
+  " au FileType cpp set makeprg=g++\ %\ -o\ run
+  " "set shellpipe=\ 
+  " set makeprg=g++\ %\ -o\ run
+  " compiler! gcc
+" else
+  " set makeprg=./compile " :make runs this script!
+" endif
+" " END QUICKFIX
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -574,7 +588,7 @@ function! Grep(name)
 endfunction
 
 "{{{ Reload vimrc
-"Will not reload ReloadVimrc function itself
+  " Doesn't reload ReloadVimrc function itself
   " Reset options to defaults
   " Clear all local commands
   " Clear all abbreviations
@@ -591,8 +605,7 @@ if !exists("*ReloadVimrc")
     smapclear
     mapclear!
     lmapclear
-    so $VIM/_vimrc
-    " so $HOME/.vim/vimrc
+    so $MYVIMRC
     set filetype=vim
   endfunction
 endif
