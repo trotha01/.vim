@@ -4,7 +4,7 @@ Project Forked from mmoutenot/Vimrc
 Quickstart  
 ----------
 
-  Make sure you have [Git][] and [Vim][] installed  
+  Make sure you have [Git][] and [Vim][] installed
   and they are in your [path][].  
   This will create a local vimrc
 
