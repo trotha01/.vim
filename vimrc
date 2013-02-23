@@ -37,7 +37,7 @@ filetype plugin on " filetype plugins
 filetype indent on " filetype specific indenting
 
 " Latex-Suite options
-set shellslash
+" set shellslash
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 " TIP: if you write your \label's as \label{fig:something}, then if you
@@ -49,6 +49,9 @@ set autoread " read a file when it is changed from the outside
 
 " Use grep
 set grepprg=grep\ -nH\ $*
+
+" Open split to right
+set splitright
 
 " Change tab to space characters
 set expandtab
@@ -151,34 +154,34 @@ endtry
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                   BUNDLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=$HOME/.vim/bundle/vundle
-call vundle#rc('$HOME/.vim/bundle/')
+set rtp+=$LOCAL_VIMRC_DIR/bundle/vundle
+call vundle#rc('$LOCAL_VIMRC_DIR/bundle/')
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Bundle "gmarik/vundle"
 
 " My Bundles here:
 "
 " original repos on github
-Bundle 'ervandew\supertab'
-Bundle 'tomtom\tcomment_vim'
-Bundle 'tpope\vim-fugitive'
-Bundle 'tpope\vim-surround'
-Bundle 'wincent\Command-T'
-Bundle 'vim-scripts\right_align'
+Bundle "ervandew/supertab"
+Bundle "tomtom/tcomment_vim"
+Bundle "tpope/vim-fugitive"
+Bundle "tpope/vim-surround"
+Bundle "wincent/Command-T"
+Bundle "vim-scripts/right\_align"
 
 " Snipmate and dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/snipmate-snippets"
-Bundle 'garbas/vim-snipmate'
+Bundle "garbas/vim-snipmate"
 
-Bundle 'scrooloose/nerdtree'
-Bundle 'rson/vim-conque'
-Bundle 'vim-scripts/Align'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/nerdtree-ack'
+Bundle "scrooloose/nerdtree"
+Bundle "rson/vim-conque"
+Bundle "vim-scripts/Align"
+Bundle "mileszs/ack.vim"
+Bundle "vim-scripts/nerdtree-ack"
 " END Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -298,7 +301,7 @@ command! -nargs=1 Grep :call Grep("<args>")
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Split Terminal
-noremap <Leader>tt :vsplit \| :ConqueTerm Powershell.exe<CR><ESC><C-w>ri
+noremap <Leader>tm :vsplit \| :ConqueTerm Powershell.exe<CR>
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
