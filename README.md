@@ -16,6 +16,7 @@ Details
 -------
 * Ensure both git and vim are in your path
 * Ensure vim shell variable is correct
+* Comment out "set shellslash" before running :BundleInstall!
 
 Bundles
 -------
