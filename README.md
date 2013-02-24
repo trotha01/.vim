@@ -10,7 +10,11 @@ Quickstart
 
   1. cd to home directory and git clone https://github.com/trotha01/.vim.git
   2. Open any file with vim and run :BundleInstall!
-  3. Add 'source $HOME/.vim/vimrc' to your global .vimrc or _vimrc
+  3. Add to your global .vimrc or _vimrc:  
+        let $LOCAL_VIMRC_DIR = "$HOME\\.vim"  
+        let $LOCAL_VIMRC = $LOCAL_VIMRC_DIR . "\\vimrc"  
+        exec ":set runtimepath+=" . $LOCAL_VIMRC_DIR . ",$VIMRUNTIME"  
+        exec ":source" . $LOCAL_VIMRC
 
 Details  
 -------
