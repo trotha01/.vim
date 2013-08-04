@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " VIMRC (pieces picked from multiple sources, primarily
 " "   http://www.vim.org/scripts/script.php?script_id=760
@@ -21,7 +20,6 @@
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -35,15 +33,6 @@ syntax on
 filetype on
 filetype plugin on " filetype plugins
 filetype indent on " filetype specific indenting
-
-" Latex-Suite options
-" set shellslash
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-" TIP: if you write your \label's as \label{fig:something}, then if you
-" type in \ref{fig: and press <C-n> you will automatically cycle through
-" all the figure labels. Very useful!
-set iskeyword+=:
 
 set autoread " read a file when it is changed from the outside
 
@@ -81,14 +70,6 @@ set incsearch " match as you type
 set hlsearch " search highlighting
 set nolazyredraw " keep redrawing screen (keep syntax highlighting)
 
-" Set font according to system
-" if you're using a mac
-" set gfn=Menlo:h12
-" set shell=/bin/bash
-
-" if you're using windows
-" set gfn=Bitstream\ Vera\ Sans\ Mono:h10
-
 " if you're using linux
 " height 12 points
 set gfn=Lucida\ Console:h12
@@ -113,18 +94,15 @@ set t_vb=
 set tm=500
 
 
-silent! call mkdir($HOME."\\.tmp")
+" silent! call mkdir($HOME."\\.tmp")
 " Errors will occur if backup/tmp directory doesn't exist
 
-set backupdir=$HOME/.tmp// " Set directory for backup files
-set directory=$HOME/.tmp// " Set directory for swap files
+" set backupdir=$HOME/.tmp// " Set directory for backup files
+" set directory=$HOME/.tmp// " Set directory for swap files
 " two slashes keep full path name when file is saved to prevent file
 " collisions with files of the same name
 
 "Persistant Undo
-"if windows
-"set undodir=C:\Windows\Temp
-"otherwise
 set undodir=~/.tmp/undodir
 set undofile                " Save undo's after file closes
 set undolevels=1000         " How many undos
@@ -150,42 +128,6 @@ endtry
 " END OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                   BUNDLES
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=$LOCAL_VIMRC_DIR/bundle/vundle
-call vundle#rc('$LOCAL_VIMRC_DIR/bundle/')
-
-" let Vundle manage Vundle
-" required!
-Bundle "gmarik/vundle"
-
-" My Bundles here:
-"
-" original repos on github
-Bundle "ervandew/supertab"
-Bundle "tomtom/tcomment_vim"
-Bundle "tpope/vim-fugitive"
-Bundle "tpope/vim-surround"
-Bundle "wincent/Command-T"
-Bundle "vim-scripts/right\_align"
-
-" Snipmate and dependencies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
-Bundle "garbas/vim-snipmate"
-
-Bundle "scrooloose/nerdtree"
-Bundle "rson/vim-conque"
-Bundle "vim-scripts/Align"
-Bundle "mileszs/ack.vim"
-Bundle "vim-scripts/nerdtree-ack"
-" END Bundles
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      VARIABLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -202,7 +144,7 @@ let g:clipbrdDefaultReg = '+'
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable "Enable syntax hl
-colorscheme ir_black
+colorscheme desert
 
 " Second paren
 highlight MatchParen ctermbg=4
@@ -211,8 +153,6 @@ highlight MatchParen ctermbg=4
 highlight PmenuSel ctermfg=black
 
 " Highlight trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-" The following alternative may be less obtrusive.
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 " Try the following if your GUI uses a dark background.
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
@@ -299,9 +239,6 @@ command! -nargs=1 Grep :call Grep("<args>")
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Split Terminal
-noremap <Leader>tm :vsplit \| :ConqueTerm Powershell.exe<CR>
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
@@ -431,23 +368,6 @@ map <leader>g "syiw:Grep^Rs<cr>
 noremap <leader>rv <Esc>:call ReloadVimrc()<CR>
 " END MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      QUICKFIX
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" if MySys() == "Windows"
-      " set shell C:/Windows/system32/cmd.exe
-  " au FileType cpp set makeprg=g++\ %\ -o\ run
-  " "set shellpipe=\ 
-  " set makeprg=g++\ %\ -o\ run
-  " compiler! gcc
-" else
-  " set makeprg=./compile " :make runs this script!
-" endif
-" " END QUICKFIX
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      FUNCTIONS
