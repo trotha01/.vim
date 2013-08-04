@@ -1,6 +1,1 @@
-doc/tags
-vimballs/
-Makefile*
-viminfo
-netrwhist
-tags
+.netrwhist
