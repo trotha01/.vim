@@ -144,7 +144,7 @@ let g:clipbrdDefaultReg = '+'
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable "Enable syntax hl
-colorscheme desert
+colorscheme elflord
 
 " Second paren
 highlight MatchParen ctermbg=4
@@ -239,6 +239,12 @@ command! -nargs=1 Grep :call Grep("<args>")
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+" Esc
+inoremap jk <esc>
+inoremap kj <esc>
+
+" Window management
+nnoremap w <c-w>
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
