@@ -224,6 +224,17 @@ augroup Colors
   au!
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 augroup END
+
+" Autocompile markdown to html
+augroup maruku
+  au!
+  autocmd BufWritePost *.md !maruku <afile>
+augroup END
+
+augroup mdExtra
+  au!
+  autocmd BufWritePost *.mde !php makehtml.php > %:p:r.html
+augroup END
 " END AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -245,6 +256,10 @@ inoremap kj <esc>
 
 " Window management
 nnoremap w <c-w>
+
+" Key navigation
+nnoremap j gj
+nnoremap k gk
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
