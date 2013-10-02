@@ -45,11 +45,8 @@ set splitright
 " Change tab to space characters
 set expandtab
 set smarttab
-set shiftwidth=2
-set softtabstop=2
-" YEAH that's right. I started using 2 spaces per tab. That's because when you
-" care about good looking code, and you're limiting yourself to 80 cols, EVERY
-" SPACE COUNTS.
+set shiftwidth=4
+set softtabstop=4
 set backspace=2
 set autoindent
 
@@ -103,10 +100,10 @@ set tm=500
 " collisions with files of the same name
 
 "Persistant Undo
-set undodir=~/.tmp/undodir
-set undofile                " Save undo's after file closes
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
+"set undodir=~/.tmp/undodir
+"set undofile                " Save undo's after file closes
+"set undolevels=1000         " How many undos
+"set undoreload=10000        " number of lines to save for undo
 
 " Folding Stuffs
 " I find this one a little annoying sometimes
