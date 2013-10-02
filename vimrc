@@ -103,10 +103,10 @@ set tm=500
 " collisions with files of the same name
 
 "Persistant Undo
-set undodir=~/.tmp/undodir
-set undofile                " Save undo's after file closes
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
+"set undodir=~/.tmp/undodir
+"set undofile                " Save undo's after file closes
+"set undolevels=1000         " How many undos
+"set undoreload=10000        " number of lines to save for undo
 
 " Folding Stuffs
 " I find this one a little annoying sometimes
