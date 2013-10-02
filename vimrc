@@ -45,11 +45,8 @@ set splitright
 " Change tab to space characters
 set expandtab
 set smarttab
-set shiftwidth=2
-set softtabstop=2
-" YEAH that's right. I started using 2 spaces per tab. That's because when you
-" care about good looking code, and you're limiting yourself to 80 cols, EVERY
-" SPACE COUNTS.
+set shiftwidth=4
+set softtabstop=4
 set backspace=2
 set autoindent
 
