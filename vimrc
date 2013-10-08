@@ -240,6 +240,7 @@ augroup END
 "                      COMMANDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 command! -nargs=1 Grep :call Grep("<args>")
+command Bash :ConqueTerm bash
 " END COMMANDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
