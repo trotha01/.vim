@@ -4,41 +4,22 @@ Project Forked from mmoutenot/Vimrc
 Quickstart  
 ----------
 
-  Make sure you have [Git][] and [Vim][] installed
-  and they are in your [path][].  
-  This will create a local vimrc
+  cd to home directory and git clone https://github.com/trotha01/.vim.git
 
-  1. cd to home directory and git clone https://github.com/trotha01/.vim.git
-  2. Open any file with vim and run :BundleInstall!
-  3. Add to your global .vimrc or _vimrc:  
-        let $LOCAL_VIMRC_DIR = "$HOME\\.vim"  
-        let $LOCAL_VIMRC = $LOCAL_VIMRC_DIR . "\\vimrc"  
-        exec ":set runtimepath+=" . $LOCAL_VIMRC_DIR . ",$VIMRUNTIME"  
-        exec ":source" . $LOCAL_VIMRC
+    $ cd
+    $ git clone https://github.com/trotha01/.vim.git
 
-Details  
--------
-* Ensure both git and vim are in your path
-* Ensure vim shell variable is correct
-* Comment out "set shellslash" before running :BundleInstall!
+  Add to your global .vimrc or _vimrc:  
+
+    let $LOCAL\_VIMRC_DIR = "$HOME\\.vim"
+    let $LOCAL\_VIMRC = $LOCAL\_VIMRC\_DIR . "\\vimrc"  
+    exec ":set runtimepath+=" . $LOCAL\_VIMRC\_DIR . ",$VIMRUNTIME"  
+    exec ":source" . $LOCAL\_VIMRC
 
 Bundles
 -------
-* [Vundle][]
-* [Align][]
-* [Command-T][]
-* [Ack][]
-* [Nerdtree][]
-* [Nerdtree-ack][]
-* [Right\_align][]
-* [Snipmate-snippets][]
 * [Supertab][]
-* [Tcomment][]
-* [Tlib\_vim][]
-* [vim-addon-mw-utils][]
 * [Vim-conque][]
-* [Vim-fugitive][]
-* [Vim-snipmate][]
 * [Vim-surround][]
 
 
