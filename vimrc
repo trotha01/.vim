@@ -90,6 +90,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" helptags
+:helptags ~/.vim/doc
 
 " silent! call mkdir($HOME."\\.tmp")
 " Errors will occur if backup/tmp directory doesn't exist
@@ -240,7 +242,7 @@ augroup END
 "                      COMMANDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 command! -nargs=1 Grep :call Grep("<args>")
-command Bash :ConqueTerm bash
+command! Bash :ConqueTerm bash
 " END COMMANDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
