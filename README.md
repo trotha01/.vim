@@ -11,10 +11,10 @@ Quickstart
 
   Add to your global .vimrc or _vimrc:  
 
-    let $LOCAL\_VIMRC_DIR = "$HOME\\.vim"
-    let $LOCAL\_VIMRC = $LOCAL\_VIMRC\_DIR . "\\vimrc"  
-    exec ":set runtimepath+=" . $LOCAL\_VIMRC\_DIR . ",$VIMRUNTIME"  
-    exec ":source" . $LOCAL\_VIMRC
+    let $LOCAL_VIMRC_DIR = "$HOME\\.vim"
+    let $LOCAL_VIMRC = $LOCAL_VIMRC_DIR . "\\vimrc"  
+    exec ":set runtimepath+=" . $LOCAL_VIMRC_DIR . ",$VIMRUNTIME"  
+    exec ":source" . $LOCAL_VIMRC
 
 Bundles
 -------
