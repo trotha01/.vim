@@ -227,7 +227,7 @@ augroup END
 " Autocompile markdown to html
 augroup maruku
   au!
-  autocmd BufWritePost *.md !maruku <afile>
+  " autocmd BufWritePost *.md !maruku <afile>
 augroup END
 
 augroup mdExtra
