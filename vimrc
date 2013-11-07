@@ -141,6 +141,16 @@ let mapleader = "."
 
 " For linux clipboard register
 let g:clipbrdDefaultReg = '+'
+
+" Check syntax on open
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+" Error symbols
+let g:syntastic_error_symbol='x'
+let g:syntastic_warning_symbol = '!'
+" Checker type
+" let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['gjslint']
 " END VARIABLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
