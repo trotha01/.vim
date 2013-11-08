@@ -251,6 +251,12 @@ augroup mdExtra
   au!
   autocmd BufWritePost *.mde !php makehtml.php > %:p:r.html
 augroup END
+
+augroup quickFix
+    au!
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
 " END AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
