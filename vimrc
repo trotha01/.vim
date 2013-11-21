@@ -175,6 +175,8 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 " Show trailing whitespace and spaces before a tab:
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
+hi StatusLine ctermbg=White ctermfg=Black
+hi VertSplit  ctermbg=White ctermfg=Black
 " END SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
