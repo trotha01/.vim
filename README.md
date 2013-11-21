@@ -9,18 +9,26 @@ Quickstart
     $ cd
     $ git clone https://github.com/trotha01/.vim.git
 
-  Add to your global .vimrc or _vimrc:  
+  Linux:
 
-    let $LOCAL_VIMRC_DIR = "$HOME\\.vim"
-    let $LOCAL_VIMRC = $LOCAL_VIMRC_DIR . "\\vimrc"  
-    exec ":set runtimepath+=" . $LOCAL_VIMRC_DIR . ",$VIMRUNTIME"  
-    exec ":source" . $LOCAL_VIMRC
+    $ vim ~/.vimrc
+
+  Windows:
+
+    $ vim ~/_vimrc
+
+  Add to your .vimrc (if Linux) or _vimrc (if Windows):  
+
+    so .vim/vimrc
+
+  New Vim Users: When in vim, press 'i' to change to insert mode, type 'so .vim/vimrc'. Press 'esc' to switch back. Type ':x' to save and exit. Or type ':help tutor' to learn more.
 
 Bundles
 -------
 * [Supertab][]
 * [Vim-conque][]
 * [Vim-surround][]
+* [Syntastic][]
 
 
   [Git]: http://git-scm.com/downloads
@@ -35,6 +43,7 @@ Bundles
 [Right\_align]: https://github.com/vim-scripts/right_align
 [Snipmate-snippets]: https://github.com/honza/snipmate-snippets
 [Supertab]: https://github.com/ervandew/supertab
+[Syntastic]: http://github.com/scrooloose/syntasic
 [Tcomment]: https://github.com/tomtom/tcomment_vim
 [Tlib\_vim]: https://github.com/tomtom/tlib_vim
 [vim-addon-mw-utils]: https://github.com/MarcWeber/vim-addon-mw-utils
