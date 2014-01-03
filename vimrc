@@ -30,11 +30,15 @@ set cmdheight=2
 
 filetype off " necessary for ftdetect to work
 syntax on
-filetype on
-filetype plugin on " filetype plugins
-filetype indent on " filetype specific indenting
+" filetype on
+" filetype plugin on " filetype plugins
+" filetype indent on " filetype specific indenting
 
 set autoread " read a file when it is changed from the outside
+
+" vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
 " Use grep
 set grepprg=grep\ -nH\ $*
@@ -131,6 +135,9 @@ endtry
 "                      BUNDLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
+
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/syntastic'
 " END OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -160,7 +167,7 @@ let g:syntastic_javascript_checkers = ['gjslint']
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable "Enable syntax hl
-colorscheme elflord
+colorscheme torte
 
 " Second paren
 highlight MatchParen ctermbg=4
@@ -169,11 +176,11 @@ highlight MatchParen ctermbg=4
 highlight PmenuSel ctermfg=black
 
 " Highlight trailing whitespace
-highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+"highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 " Try the following if your GUI uses a dark background.
-highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+"highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 " Show trailing whitespace and spaces before a tab:
-match ExtraWhitespace /\s\+$\| \+\ze\t/
+"match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 hi StatusLine ctermbg=White ctermfg=Black
 hi VertSplit  ctermbg=White ctermfg=Black
@@ -184,6 +191,13 @@ hi VertSplit  ctermbg=White ctermfg=Black
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Save view
+augroup folds
+    au!
+    autocmd BufWinLeave * mkview
+    autocmd BufWinEnter * silent loadview
+augroup END
 
 " Automatically cd to current directory
 " backwards compatible
@@ -236,6 +250,11 @@ augroup END
 augroup reload
   au!
   autocmd BufWritePost vimrc call ReloadVimrc()
+augroup END
+
+augroup tab
+    au!
+    autocmd filetype make setlocal noexpandtab
 augroup END
 
 augroup Colors
