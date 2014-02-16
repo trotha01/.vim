@@ -37,8 +37,8 @@ syntax on
 set autoread " read a file when it is changed from the outside
 
 " vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set rtp+=~/.vim/bundle/vundle/
+" call vundle#rc()
 
 " Use grep
 set grepprg=grep\ -nH\ $*
@@ -63,6 +63,8 @@ endif
 " Tab completion
 "set wildmenu
 "set wildmode=list:longest,full
+" remove smartTab
+let b:SuperTabDisabled=1
 
 " When searching
 set ignorecase
@@ -136,8 +138,8 @@ endtry
 """""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/syntastic'
+" Bundle 'gmarik/vundle'
+" Bundle 'scrooloose/syntastic'
 " END OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -208,7 +210,7 @@ augroup END
 
 augroup templates
   au!
-  autocmd BufNewFile * silent! 0r $LOCAL_VIMRC_DIR/templates/%:e.txt
+  autocmd BufNewFile * silent! 0r $HOME/.vim/templates/%:e.txt
 augroup END
 
 " Remove any trailing whitespace that is in the file
@@ -277,6 +279,11 @@ augroup quickFix
     au!
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
+
+augroup tex
+    au!
+    autocmd BufWritePost *.tex !latex %
 augroup END
 " END AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
