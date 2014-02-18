@@ -213,7 +213,15 @@ augroup END
 augroup templates
   au!
   autocmd BufNewFile * silent! 0r $HOME/.vim/templates/%:e.txt
+  autocmd BufNewFile *.c silent! !cat $HOME/.vim/templates/make.txt >> Makefile
 augroup END
+
+" Allow tabs in makefiles
+augroup makefile
+    au!
+    autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+augroup END
+
 
 " Remove any trailing whitespace that is in the file
 " Don't remove if file is '.md' or '.vim' file
