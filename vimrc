@@ -167,9 +167,11 @@ let g:syntastic_javascript_checkers = ['gjslint']
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
 syntax enable "Enable syntax hl
 colorscheme torte
+
+" Transparent Background
+highlight Normal ctermbg=NONE
 
 " Second paren
 highlight MatchParen ctermbg=4
@@ -261,7 +263,7 @@ augroup END
 
 augroup Colors
   au!
-  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=green guibg=green
 augroup END
 
 " Autocompile markdown to html
@@ -311,6 +313,11 @@ nnoremap w <c-w>
 " Key navigation
 nnoremap j gj
 nnoremap k gk
+
+" Find syntax highlight group under cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
@@ -444,6 +451,12 @@ noremap <leader>rv <Esc>:call ReloadVimrc()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+"See syntax highlighting
+function! SyntaxItem()
+  return synIDattr(synID(line("."),col("."),1),"name")
+endfunction
+set statusline+=%=
+set statusline+=%{SyntaxItem()}
 
 "{{{ Open URL in Browser
 function! Browser()

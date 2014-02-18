@@ -1,2 +1,4 @@
 .netrwhist
 .VimballRecord
+view/*
+doc/tags
