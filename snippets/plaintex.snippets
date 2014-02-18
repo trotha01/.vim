@@ -118,3 +118,14 @@ snippet left
 	\left${1:symbol}
 	    ${3}
 	\right${2:symbol}
+
+snippet array
+	\left${1:symbol} \begin{array}{${3:c}}
+		${4}
+	\end{array} \right${2:symbol}
+
+snippet array2
+	\left${1:symbol} \begin{array}{cc}
+		${3:a} & ${4:b} \\
+		${5:c} & ${6:d}
+	\end{array} \right${2:symbol}${7}
