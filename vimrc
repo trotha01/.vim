@@ -28,11 +28,11 @@ set number "line numbers
 set showcmd "show :command at bottom
 set cmdheight=2
 
-filetype off " necessary for ftdetect to work
+" filetype off " necessary for ftdetect to work
 syntax on
-" filetype on
-" filetype plugin on " filetype plugins
-" filetype indent on " filetype specific indenting
+filetype on
+filetype plugin on " filetype plugins
+filetype indent on " filetype specific indenting
 
 set autoread " read a file when it is changed from the outside
 
@@ -213,7 +213,8 @@ augroup END
 augroup templates
   au!
   autocmd BufNewFile * silent! 0r $HOME/.vim/templates/%:e.txt
-  autocmd BufNewFile *.c silent! !cat $HOME/.vim/templates/make.txt >> Makefile
+  autocmd BufNewFile *.c silent! !cat $HOME/.vim/templates/make.c.txt >> Makefile
+  autocmd BufNewFile *.cpp silent! !cat $HOME/.vim/templates/make.cpp.txt >> Makefile
 augroup END
 
 " Allow tabs in makefiles
