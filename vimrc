@@ -66,6 +66,9 @@ endif
 " remove smartTab
 let b:SuperTabDisabled=1
 
+" For latex files
+let g:tex_flavor='latex'
+
 " When searching
 set ignorecase
 set smartcase
