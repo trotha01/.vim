@@ -90,6 +90,9 @@ set ruler "show current row/column
 set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
+"Remove fillchars
+set fillchars=
+
 " No sound on errors
 set noerrorbells
 set novisualbell
@@ -210,17 +213,19 @@ augroup DirectoryChange
   autocmd BufEnter * silent! lcd %:p:h
 augroup END
 
+" help template
 augroup templates
   au!
   autocmd BufNewFile * silent! 0r $HOME/.vim/templates/%:e.txt
-  autocmd BufNewFile *.c silent! !cat $HOME/.vim/templates/make.c.txt >> Makefile
-  autocmd BufNewFile *.cpp silent! !cat $HOME/.vim/templates/make.cpp.txt >> Makefile
+  " autocmd BufNewFile *.c silent! !cat $HOME/.vim/templates/make.c.txt >> Makefile
+  " autocmd BufNewFile *.cpp silent! !cat $HOME/.vim/templates/make.cpp.txt >> Makefile
 augroup END
 
-" Allow tabs in makefiles
-augroup makefile
+" Allow tabs in makefiles/.calendar
+augroup tabs
     au!
     autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+    autocmd BufWinEnter .calendar set noexpandtab shiftwidth=8 softtabstop=0
 augroup END
 
 
