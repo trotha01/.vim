@@ -25,29 +25,36 @@ Quickstart
 
 Bundles
 -------
-* [Supertab][]
-* [Vim-conque][]
-* [Vim-surround][]
+* [Align][]
+* [Pathogen][]
 * [Syntastic][]
+* [Tagbar][]
+* [Vim-fugitive][]
+* [Vim-snipmate][]
+* [Vim-surround][]
 
 
-  [Git]: http://git-scm.com/downloads
-  [Vim]: http://www.vim.org/download.php
-  [path]: http://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them
-[Vundle]: https://github.com/gmarik/vundle
+
+[Git]: http://git-scm.com/downloads
+[Vim]: http://www.vim.org/download.php
+[path]: http://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them
+
+[Ack]: https://github.com/mileszs/ack.vim
 [Align]: https://github.com/vim-scripts/Align
 [Command-T]: https://github.com/wincent/Command-T
-[Ack]: https://github.com/mileszs/ack.vim
-[Nerdtree]: https://github.com/scrooloose/nerdtree
 [Nerdtree-ack]: https://github.com/vim-scripts/nerdtree-ack
+[Nerdtree]: https://github.com/scrooloose/nerdtree
+[Pathogen]: https://github.com/tpope/vim-pathogen
 [Right\_align]: https://github.com/vim-scripts/right_align
 [Snipmate-snippets]: https://github.com/honza/snipmate-snippets
 [Supertab]: https://github.com/ervandew/supertab
 [Syntastic]: http://github.com/scrooloose/syntasic
+[Tagbar]: http://majutsushi.github.io/tagbar/
 [Tcomment]: https://github.com/tomtom/tcomment_vim
 [Tlib\_vim]: https://github.com/tomtom/tlib_vim
-[vim-addon-mw-utils]: https://github.com/MarcWeber/vim-addon-mw-utils
 [Vim-conque]: https://github.com/rson/vim-conque
 [Vim-fugitive]: https://github.com/tpope/vim-fugitive
 [Vim-snipmate]: https://github.com/garbas/vim-snipmate
 [Vim-surround]: https://github.com/tpope/vim-surround
+[Vundle]: https://github.com/gmarik/vundle
+[vim-addon-mw-utils]: https://github.com/MarcWeber/vim-addon-mw-utils
