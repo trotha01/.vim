@@ -7,7 +7,7 @@ Quickstart
   cd to home directory and git clone https://github.com/trotha01/.vim.git
 
     $ cd
-    $ git clone https://github.com/trotha01/.vim.git
+    $ git clone --recursive https://github.com/trotha01/.vim.git
 
   Linux:
 
