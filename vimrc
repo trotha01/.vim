@@ -91,7 +91,7 @@ set ffs=unix,dos,mac "Default file types
 "Status line gnarliness
 set ruler "show current row/column
 set laststatus=2
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ \ \ Line:\ %l/%L:%c
 
 "Remove fillchars
 set fillchars=
@@ -143,6 +143,9 @@ endtry
 "                      BUNDLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
+
+" Syntastic options (for lnext lprev to work)
+let g:syntastic_always_populate_loc_list = 1
 
 " Bundle 'gmarik/vundle'
 " Bundle 'scrooloose/syntastic'
@@ -203,10 +206,10 @@ hi VertSplit  ctermbg=White ctermfg=Black
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Save view
-augroup folds
+augroup views
     au!
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent loadview
+    autocmd BufWinLeave ?* mkview
+    autocmd BufWinEnter ?* silent loadview
 augroup END
 
 " Automatically cd to current directory
@@ -224,10 +227,11 @@ augroup templates
   " autocmd BufNewFile *.cpp silent! !cat $HOME/.vim/templates/make.cpp.txt >> Makefile
 augroup END
 
-" Allow tabs in makefiles/.calendar
+" Allow tabs in makefiles and .calendar
 augroup tabs
     au!
     autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+    autocmd FileType calendar set noexpandtab shiftwidth=8 softtabstop=0
     autocmd BufWinEnter .calendar set noexpandtab shiftwidth=8 softtabstop=0
 augroup END
 
@@ -258,7 +262,7 @@ augroup JumpCursorOnEdit
         \   endif |
         \ endif
   " Need to postpone using "zv" until after reading the modelines.
-  autocmd BufWinEnter *
+  autocmd BufWinEnter * silent
         \ if exists("b:doopenfold") |
         \   exe "normal zv" |
         \   if(b:doopenfold > 1) |
@@ -268,6 +272,7 @@ augroup JumpCursorOnEdit
         \ endif
 augroup END
 
+" Reloads vimrc on save
 augroup reload
   au!
   autocmd BufWritePost vimrc call ReloadVimrc()
@@ -302,8 +307,10 @@ augroup END
 
 augroup tex
     au!
-    autocmd BufWritePost *.tex !latex %
+    " autocmd BufWritePost *.tex !latex %
+    autocmd BufWritePost *.tex !pdflatex %
 augroup END
+
 " END AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -370,7 +377,7 @@ noremap <silent> <C-Right> :tabnext<CR>
 " Previous Tab
 noremap <silent> <C-Left> :tabprevious<CR>
 " New Tab
-noremap <silent> <C-t> :tabnew<CR>
+" noremap <silent> <C-t> :tabnew<CR>
 
 " Centers the next result on the page
 map N Nzz
