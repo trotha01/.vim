@@ -102,6 +102,9 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Neocomplete
+let g:neocomplcache_enable_at_startup = 1
+
 " helptags
 :helptags ~/.vim/doc
 
@@ -451,6 +454,9 @@ noremap <D-S-L> <C-w>l
 
 " open terminal in vim
 noremap <leader>ksh :ConqueTermSplit /bin/ksh<cr>
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " DJANGO STUFF
 let g:last_relative_dir = ''
