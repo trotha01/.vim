@@ -104,6 +104,7 @@ set tm=500
 
 " Neocomplete
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_disable_auto_complete = 1 
 
 " helptags
 :helptags ~/.vim/doc
@@ -457,6 +458,9 @@ noremap <leader>ksh :ConqueTermSplit /bin/ksh<cr>
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Tagbar mapp
+:command! -nargs=0 TT TagbarToggle
 
 " DJANGO STUFF
 let g:last_relative_dir = ''
