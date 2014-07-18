@@ -173,6 +173,7 @@ let g:syntastic_warning_symbol = '!'
 " Checker type
 " let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['gjslint']
+let g:syntastic_go_checkers = ['govet', 'gofmt', 'go']
 " END VARIABLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
