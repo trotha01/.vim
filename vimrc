@@ -39,6 +39,7 @@ set autoread " read a file when it is changed from the outside
 " vundle
 " set rtp+=~/.vim/bundle/vundle/
 " call vundle#rc()
+execute pathogen#infect()
 
 " Use grep
 set grepprg=grep\ -nH\ $*
@@ -342,6 +343,9 @@ nnoremap w <c-w>
 " Key navigation
 nnoremap j gj
 nnoremap k gk
+
+" Command line 
+noremap Q gQ
 
 " Find syntax highlight group under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
