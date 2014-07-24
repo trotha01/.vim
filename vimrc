@@ -105,7 +105,6 @@ set tm=500
 
 " Neocomplete
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_disable_auto_complete = 1 
 
 " helptags
 :helptags ~/.vim/doc
