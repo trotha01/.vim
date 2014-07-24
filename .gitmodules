@@ -10,3 +10,9 @@
 	path = bundle/vim-go
 	url = git@github.com:fatih/vim-go.git
         ignore = dirty
+[submodule "bundle/neocomplcache.vim"]
+	path = bundle/neocomplcache.vim
+	url = git@github.com:Shougo/neocomplcache.vim.git
+[submodule "bundle/neosnippet.vim"]
+	path = bundle/neosnippet.vim
+	url = git@github.com:Shougo/neosnippet.vim.git
