@@ -104,7 +104,10 @@ set t_vb=
 set tm=500
 
 " Neocomplete
-let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_at_startup = 1
+" <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:neosnippet#disable_runtime_snippets = { "_": 1, }
 
 " helptags
 :helptags ~/.vim/doc
