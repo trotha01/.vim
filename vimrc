@@ -36,11 +36,6 @@ filetype indent on " filetype specific indenting
 
 set autoread " read a file when it is changed from the outside
 
-" vundle
-" set rtp+=~/.vim/bundle/vundle/
-" call vundle#rc()
-execute pathogen#infect()
-
 " Use grep
 set grepprg=grep\ -nH\ $*
 
@@ -60,12 +55,6 @@ if version >= 700 " vim version 7.0 and up
   set spl=en spell
   set nospell
 endif
-
-" Tab completion
-"set wildmenu
-"set wildmode=list:longest,full
-" remove smartTab
-let b:SuperTabDisabled=1
 
 " For latex files
 let g:tex_flavor='latex'
@@ -92,7 +81,7 @@ set ffs=unix,dos,mac "Default file types
 "Status line gnarliness
 set ruler "show current row/column
 set laststatus=2
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ \ \ Line:\ %l/%L:%c
+set statusline=\ %F%m%r%h\ %w\ \ \ \ Line:\ %l/%L:%c
 
 "Remove fillchars
 set fillchars=
@@ -154,8 +143,6 @@ execute pathogen#infect()
 " Syntastic options (for lnext lprev to work)
 let g:syntastic_always_populate_loc_list = 1
 
-" Bundle 'gmarik/vundle'
-" Bundle 'scrooloose/syntastic'
 " END OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -327,7 +314,6 @@ augroup END
 "                      COMMANDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 command! -nargs=1 Grep :call Grep("<args>")
-command! Bash :ConqueTerm bash
 " END COMMANDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -369,10 +355,7 @@ noremap <Leader>vi :tabe $HOME/.vim/vimrc<CR>
 noremap <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 noremap <Leader>s :split
 noremap <Leader>v :vnew
-noremap <Leader>t :tabe <C-R><CR>
-" Emacs-like beginning and end of line.
-imap <c-e> <c-o>$
-imap <c-a> <c-o>^
+noremap <Leader>t :tabedit <C-R><CR>
 
 " Open Url with the browser \w
 map <Leader>w :call Browser ()<CR>
@@ -415,31 +398,10 @@ noremap <D-S-J> <C-w>j
 noremap <D-S-K> <C-w>k
 noremap <D-S-L> <C-w>l
 
-" open terminal in vim
-noremap <leader>ksh :ConqueTermSplit /bin/ksh<cr>
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " Tagbar mapp
 :command! -nargs=0 TT TagbarToggle
 
-" DJANGO STUFF
-let g:last_relative_dir = ''
-nnoremap \1 :call RelatedFile ("models.py")<cr>
-nnoremap \2 :call RelatedFile ("views.py")<cr>
-nnoremap \3 :call RelatedFile ("urls.py")<cr>
-nnoremap \4 :call RelatedFile ("admin.py")<cr>
-nnoremap \5 :call RelatedFile ("tests.py")<cr>
-nnoremap \6 :call RelatedFile ( "templates/" )<cr>
-nnoremap \7 :call RelatedFile ( "templatetags/" )<cr>
-nnoremap \8 :call RelatedFile ( "management/" )<cr>
-nnoremap \0 :e settings.py<cr>
-nnoremap \9 :e urls.py<cr>
-map <F8> :vertical wincmd f<CR>
-
-map <leader>g "syiw:Grep^Rs<cr>
-
+" Reload vimrc on command
 noremap <leader>rv <Esc>:call ReloadVimrc()<CR>
 " END MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -473,83 +435,6 @@ function! TodoListMode()
   "or 'norm! zMzr'
 endfunction
 "}}}
-
-function! CurDir()
-  let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
-  return curdir
-endfunction
-
-function! HasPaste()
-  if &paste
-    return 'PASTE MODE  '
-  else
-    return ''
-  endif
-endfunction
-
-function! DelEmptyLineAbove()
-  if line(".") == 1
-    return
-  endif
-  let l:line = getline(line(".") - 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .-1d
-    silent normal! <C-y>
-    call cursor(line("."), l:colsave)
-  endif
-endfunction
-
-function! AddEmptyLineAbove()
-  let l:scrolloffsave = &scrolloff
-  " Avoid jerky scrolling with ^E at top of window
-  set scrolloff=0
-  call append(line(".") - 1, "")
-  if winline() != winheight(0)
-    silent normal! <C-e>
-  endif
-  let &scrolloff = l:scrolloffsave
-endfunction
-
-function! DelEmptyLineBelow()
-  if line(".") == line("$")
-    return
-  endif
-  let l:line = getline(line(".") + 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .+1d
-    ''
-    call cursor(line("."), l:colsave)
-  endif
-endfunction
-
-function! AddEmptyLineBelow()
-  call append(line("."), "")
-endfunction
-
-fun! RelatedFile(file)
-  #This is to check that the directory looks djangoish
-  if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
-    exec "edit %:h/" . a:file
-    let g:last_relative_dir = expand("%:h") . '/'
-    return ''
-  endif
-  if g:last_relative_dir != ''
-    exec "edit " . g:last_relative_dir . a:file
-    return ''
-  endif
-  echo "Cant determine where relative file is : " . a:file
-  return ''
-endfun
-
-" fun SetAppDir()
-"     if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
-"         let g:last_relative_dir = expand("%:h") . '/'
-"         return ''
-"     endif
-" endfun
-" autocmd BufEnter *.py call SetAppDir()
 
 function! Grep(name)
   let l:pattern = input("Other pattern: ")
@@ -592,7 +477,7 @@ function! Grep(name)
 endfunction
 
 "{{{ Reload vimrc
-  " Doesn't reload ReloadVimrc function itself
+  " Doesn't reload ReloadVimrc function itself (Which is a good thing)
   " Reset options to defaults
   " Clear all local commands
   " Clear all abbreviations
