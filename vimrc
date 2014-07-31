@@ -181,7 +181,8 @@ highlight Normal ctermbg=NONE
 highlight MatchParen ctermbg=4
 
 " Make the omnicomplete text readable
-highlight PmenuSel ctermfg=black
+highlight Pmenu ctermbg=white ctermfg=black
+highlight PmenuSel ctermbg=black ctermfg=white
 
 " Highlight trailing whitespace
 "highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
