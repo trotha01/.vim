@@ -64,6 +64,7 @@ endif
 let g:tex_flavor='latex'
 
 " When searching
+set ignorecase " ignores case when searching
 set smartcase " ignores case when searching, unless pattern contains uppercase
 set incsearch " match as you type
 set hlsearch " search highlighting
