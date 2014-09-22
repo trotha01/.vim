@@ -23,12 +23,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible "not compatible with vi
-set number "line numbers
-set showcmd "show :command at bottom
-set cmdheight=2 "Command line height
+set nocompatible " not compatible with vi
+set number " line numbers
+set showcmd " show :command at bottom
+set cmdheight=2 " Command line height
 
-set paste "Copy and paste into vim normally
+set paste " Copy and paste into vim normally
 
 syntax on "Syntax highlighting
 filetype on "Filetype detection
@@ -64,8 +64,7 @@ endif
 let g:tex_flavor='latex'
 
 " When searching
-set ignorecase
-set smartcase
+set smartcase " ignores case when searching, unless pattern contains uppercase
 set incsearch " match as you type
 set hlsearch " search highlighting
 set nolazyredraw " keep redrawing screen (keep syntax highlighting)
@@ -75,14 +74,14 @@ set t_Co=256 " terminal colors
 set background=dark " Vim will try to use colors for a dark background
 set encoding=utf8
 
-set ffs=unix,dos,mac "Default file types
+set ffs=unix,dos,mac " Default file types
 
-"Status line gnarliness
-set ruler "show current row/column
+" Status line gnarliness
+set ruler " show current row/column
 set laststatus=2
 set statusline=\ %F%m%r%h\ %w\ \ \ \ Line:\ %l/%L:%c
 
-"Remove fillchars (used to fill statuslines and vertical separators)
+" Remove fillchars (used to fill statuslines and vertical separators)
 set fillchars=
 
 " No sound on errors
