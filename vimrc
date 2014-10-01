@@ -383,10 +383,6 @@ let g:C_Ctrl_j = 'off'
 nmap <C-j> <C-d>
 nmap <C-k> <C-u>
 
-" Swap ; and : (one less keypress)
-nnoremap ; :
-nnoremap : ;
-
 " resize current buffer by +/- 5
 nnoremap <S-left> :vertical resize -5<cr>
 nnoremap <S-down> :resize +5<cr>
