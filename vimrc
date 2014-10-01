@@ -23,32 +23,36 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-set number "line numbers
-set showcmd "show :command at bottom
-set cmdheight=2
+set nocompatible " not compatible with vi
+set number " line numbers
+set showcmd " show :command at bottom
+set cmdheight=2 " Command line height
 
-" filetype off " necessary for ftdetect to work
-syntax on
-filetype on
+set paste " Copy and paste into vim normally
+
+syntax on "Syntax highlighting
+filetype on "Filetype detection
 filetype plugin on " filetype plugins
 filetype indent on " filetype specific indenting
 
 set autoread " read a file when it is changed from the outside
 
 " Use grep
-set grepprg=grep\ -nH\ $*
+" TODO: --color doesn't work?
+set grepprg=grep\ -InrH\ --color\ $*
 
 " Open split to right
 set splitright
 
 " Change tab to space characters
-set expandtab
-set smarttab
-set shiftwidth=4
-set softtabstop=4
-set backspace=2
-set autoindent
+set expandtab " Use spaces for a tab
+set smarttab " Smartly determines # of spaces to use
+set shiftwidth=4 " number of spaces to use for autoindent
+set softtabstop=4 " number of spaces to use for indents
+set backspace=2 " Allow backspace over autoindents/line breaks/start of insert
+set autoindent " Autoindent on a new line
+set cpoptions+=I " Don't autoremove autoindent if not used
+
 
 " Spell checking (default=false)
 if version >= 700 " vim version 7.0 and up
@@ -60,30 +64,25 @@ endif
 let g:tex_flavor='latex'
 
 " When searching
-set ignorecase
-set smartcase
+set ignorecase " ignores case when searching
+set smartcase " ignores case when searching, unless pattern contains uppercase
 set incsearch " match as you type
 set hlsearch " search highlighting
 set nolazyredraw " keep redrawing screen (keep syntax highlighting)
 
-" if you're using linux
-" height 12 points
-set gfn=Lucida\ Console:h12
-"  set shell=/bin/bash
-
 set guioptions-=T " remove toolbar
 set t_Co=256 " terminal colors
-set background=dark
+set background=dark " Vim will try to use colors for a dark background
 set encoding=utf8
 
-set ffs=unix,dos,mac "Default file types
+set ffs=unix,dos,mac " Default file types
 
-"Status line gnarliness
-set ruler "show current row/column
+" Status line gnarliness
+set ruler " show current row/column
 set laststatus=2
 set statusline=\ %F%m%r%h\ %w\ \ \ \ Line:\ %l/%L:%c
 
-"Remove fillchars
+" Remove fillchars (used to fill statuslines and vertical separators)
 set fillchars=
 
 " No sound on errors
@@ -323,8 +322,7 @@ command! -nargs=1 Grep :call Grep("<args>")
 "                      MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Esc
-inoremap jk <esc>
-inoremap kj <esc>
+inoremap jj <Esc>
 
 " Window management
 nnoremap w <c-w>
