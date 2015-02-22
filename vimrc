@@ -249,6 +249,12 @@ augroup reload
   autocmd BufWritePost .vimrc call ReloadVimrc()
 augroup END
 
+augroup autoindent
+    au!
+    autocmd BufWritePre *.scss :normal migg=G`izz
+    autocmd BufWritePre *.hbs :normal migg=G`izz
+augroup End
+
 augroup WhitespaceColors
   au!
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=green guibg=green
@@ -263,8 +269,8 @@ augroup END
 
 augroup quickFix
     au!
-    autocmd QuickFixCmdPost [^l]* nested botright cwindow
-    autocmd QuickFixCmdPost    l* nested botright lwindow
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
 
 augroup tex
@@ -305,7 +311,12 @@ command! -nargs=1 Grep :call Grep("<args>")
 "                      MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Esc
-inoremap jj <Esc>
+imap fj <Esc>
+imap jf <Esc>
+
+" Screen navigation
+nnoremap <c-j> <c-e>
+nnoremap <c-k> <c-y>
 
 " Window management
 nnoremap w <c-w>
