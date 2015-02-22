@@ -28,7 +28,7 @@ set number " line numbers
 set showcmd " show :command at bottom
 set cmdheight=2 " Command line height
 
-set paste " Copy and paste into vim normally
+" set paste " Copy and paste into vim normally
 set mouse=a " Enable use of the mouse
 
 syntax on "Syntax highlighting
@@ -91,12 +91,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-"Persistant Undo
-"set undodir=~/.tmp/undodir
-"set undofile                " Save undo's after file closes
-"set undolevels=1000         " How many undos
-"set undoreload=10000        " number of lines to save for undo
 
 try
   lang en_US
