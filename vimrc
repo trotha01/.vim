@@ -352,6 +352,11 @@ noremap <silent> <C-Left> :tabprevious<CR>
 map N Nzz
 map n nzz
 
+" Move up and down easier
+let g:C_Ctrl_j = 'off'
+nmap <C-j> <C-d>
+nmap <C-k> <C-u>
+
 " resize current buffer by +/- 5
 nnoremap <S-left> :vertical resize -5<cr>
 nnoremap <S-down> :resize +5<cr>
