@@ -48,8 +48,8 @@ set splitright
 " Change tab to space characters
 set expandtab " Use spaces for a tab
 set smarttab " Smartly determines # of spaces to use
-set shiftwidth=4 " number of spaces to use for autoindent
-set softtabstop=4 " number of spaces to use for indents
+set shiftwidth=2 " number of spaces to use for autoindent
+set softtabstop=2 " number of spaces to use for indents
 set backspace=2 " Allow backspace over autoindents/line breaks/start of insert
 set autoindent " Autoindent on a new line
 set cpoptions+=I " Don't autoremove autoindent if not used
