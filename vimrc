@@ -97,6 +97,15 @@ try
 catch
 endtry
 
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
+
+let g:UltiSnipsExpandTrigger = "<cr>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
 " END OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -111,7 +120,7 @@ let g:syntastic_always_populate_loc_list = 1
 " helptags
 :helptags ~/.vim/doc
 
-" END OPTIONS
+" END BUNDLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
