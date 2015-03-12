@@ -180,14 +180,6 @@ hi VertSplit  ctermbg=Black ctermfg=White
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Save view
-augroup views
-    au!
-    autocmd BufWinLeave ?* silent mkview
-    autocmd BufWinEnter ?* silent loadview
-augroup END
-
 " Automatically cd to current directory
 " backwards compatible
 augroup DirectoryChange
