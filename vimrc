@@ -23,6 +23,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+" Add fuzzy finder
+" set rtp+=~/.fzf
+
 set nocompatible " not compatible with vi
 set number " line numbers
 set showcmd " show :command at bottom
@@ -98,12 +101,12 @@ catch
 endtry
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
+" let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
 
-let g:UltiSnipsExpandTrigger = "<C-l>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsExpandTrigger = "<C-l>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 
 " END OPTIONS
@@ -254,8 +257,8 @@ augroup END
 
 augroup autoindent
     au!
-    autocmd BufWritePre *.scss :normal migg=G`izz
-    autocmd BufWritePre *.hbs :normal migg=G`izz
+    " autocmd BufWritePre *.scss :normal migg=G`izz
+    " autocmd BufWritePre *.hbs :normal migg=G`izz
 augroup End
 
 augroup WhitespaceColors
@@ -314,8 +317,8 @@ command! -nargs=1 Grep :call Grep("<args>")
 "                      MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Esc
-imap fj <Esc>
-imap jf <Esc>
+" imap fj <Esc>
+" imap jf <Esc>
 
 " Screen navigation
 nnoremap <c-j> <c-e>
@@ -336,6 +339,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " Other remaps
 noremap <Leader>n :set nopaste<cr>
 noremap <Leader>p :set paste<cr>
+noremap <Leader>r :set rnu<cr>
+noremap <Leader>u :set rnu!<cr>
 noremap <Leader>vi :tabe $HOME/.vim/vimrc<CR>
 
 " Open Url with the browser \w
