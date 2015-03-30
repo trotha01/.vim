@@ -316,8 +316,12 @@ command! -nargs=1 Grep :call Grep("<args>")
 nnoremap <c-j> <c-e>
 nnoremap <c-k> <c-y>
 
-" Window management
-nnoremap w <c-w>
+" Map marker jumping to cursor, not line
+nmap ' `
+
+" Easier folding block
+nnoremap z{ zfa{
+nnoremap z} zfa{
 
 " Key navigation
 nnoremap j gj
