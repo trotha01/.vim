@@ -323,6 +323,9 @@ nmap ' `
 nnoremap z{ zfa{
 nnoremap z} zfa{
 
+nnoremap z[ zfa{
+nnoremap z] zfa{
+
 " Key navigation
 nnoremap j gj
 nnoremap k gk
