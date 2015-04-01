@@ -394,11 +394,40 @@ endfunction
 set statusline+=%=
 set statusline+=%{SyntaxItem()}
 
-"{{{ Open URL in Browser
+" Open URL in Browser
 function! Browser()
   let line = getline (".")
-  let line = matchstr (line,"http[^  ]*")
-  exec "!chrome ".line
+  let a:url = matchstr (line,"http[^  ]*")
+  " exec "!chrome ".line
+
+  if IsWin()
+      let cmd = '!start rundll32 url.dll,FileProtocolHandler %URL%'
+  elseif has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin'
+      let cmd = 'open %URL%'
+  elseif executable('xdg-open')
+      let cmd = 'xdg-open %URL%'
+  elseif executable('firefox')
+      let cmd = 'firefox %URL% &'
+  else
+      let cmd = ''
+  endif
+
+  if len(cmd) == 0
+      redraw
+      echohl WarningMsg
+      echo "It seems that you don't have general web browser. Open URL below."
+      echohl None
+      echo a:url
+      return
+  endif
+
+  if cmd =~ '^:[A-Z]'
+      let cmd = substitute(cmd, '%URL%', '\=a:url', 'g')
+      exec cmd
+  else
+      let cmd = substitute(cmd, '%URL%', '\=shellescape(a:url)', 'g')
+      call system(cmd)
+  endif
 endfunction
 "}}}
 
