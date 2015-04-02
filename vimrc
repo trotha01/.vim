@@ -20,15 +20,23 @@
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:go_fmt_command = "goimports"
+set diffopt=filler,vertical
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+" Add fuzzy finder
+" set rtp+=~/.fzf
+
 set nocompatible " not compatible with vi
 set number " line numbers
 set showcmd " show :command at bottom
 set cmdheight=2 " Command line height
 
-set paste " Copy and paste into vim normally
+" set paste " Copy and paste into vim normally
+set mouse=a " Enable use of the mouse
 
 syntax on "Syntax highlighting
 filetype on "Filetype detection
@@ -47,8 +55,8 @@ set splitright
 " Change tab to space characters
 set expandtab " Use spaces for a tab
 set smarttab " Smartly determines # of spaces to use
-set shiftwidth=4 " number of spaces to use for autoindent
-set softtabstop=4 " number of spaces to use for indents
+set shiftwidth=2 " number of spaces to use for autoindent
+set softtabstop=2 " number of spaces to use for indents
 set backspace=2 " Allow backspace over autoindents/line breaks/start of insert
 set autoindent " Autoindent on a new line
 set cpoptions+=I " Don't autoremove autoindent if not used
@@ -91,45 +99,19 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Neocomplete
-" let g:neocomplcache_enable_at_startup = 1
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:neosnippet#disable_runtime_snippets = { "_": 1, }
-
-" helptags
-:helptags ~/.vim/doc
-
-" silent! call mkdir($HOME."\\.tmp")
-" Errors will occur if backup/tmp directory doesn't exist
-
-" set backupdir=$HOME/.tmp// " Set directory for backup files
-" set directory=$HOME/.tmp// " Set directory for swap files
-" two slashes keep full path name when file is saved to prevent file
-" collisions with files of the same name
-
-"Persistant Undo
-"set undodir=~/.tmp/undodir
-"set undofile                " Save undo's after file closes
-"set undolevels=1000         " How many undos
-"set undoreload=10000        " number of lines to save for undo
-
-" Folding Stuffs
-" I find this one a little annoying sometimes
-" set foldmethod=marker
-" set wrap
-" set textwidth=80
-" let g:RightAlign_RightBorder=80
-" if exists('+colorcolumn')
-  " set colorcolumn=80
-" else
-  " au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-" endif
-
 try
   lang en_US
 catch
 endtry
+
+" make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
+
+" let g:UltiSnipsExpandTrigger = "<C-l>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 
 " END OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -142,7 +124,10 @@ execute pathogen#infect()
 " Syntastic options (for lnext lprev to work)
 let g:syntastic_always_populate_loc_list = 1
 
-" END OPTIONS
+" helptags
+:helptags ~/.vim/doc
+
+" END BUNDLES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,14 +169,14 @@ highlight Pmenu ctermbg=white ctermfg=black
 highlight PmenuSel ctermbg=black ctermfg=white
 
 " Highlight trailing whitespace
-"highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
-" Try the following if your GUI uses a dark background.
-"highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 " Show trailing whitespace and spaces before a tab:
-"match ExtraWhitespace /\s\+$\| \+\ze\t/
+match ExtraWhitespace /\s\+$\| \+\ze\t/
 
-hi StatusLine ctermbg=White ctermfg=Black
-hi VertSplit  ctermbg=White ctermfg=Black
+" hi StatusLine ctermbg=White ctermfg=Black
+" hi VertSplit  ctermbg=White ctermfg=Black
+hi StatusLine ctermbg=Black ctermfg=White
+hi VertSplit  ctermbg=Black ctermfg=White
 " END SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -199,14 +184,6 @@ hi VertSplit  ctermbg=White ctermfg=Black
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      AUTOCMDS
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Save view
-augroup views
-    au!
-    autocmd BufWinLeave ?* mkview
-    autocmd BufWinEnter ?* silent loadview
-augroup END
-
 " Automatically cd to current directory
 " backwards compatible
 augroup DirectoryChange
@@ -231,9 +208,9 @@ augroup End
 " Allow tabs in makefiles and .calendar
 augroup tabs
     au!
-    autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
-    autocmd FileType calendar set noexpandtab shiftwidth=8 softtabstop=0
-    autocmd BufWinEnter .calendar set noexpandtab shiftwidth=8 softtabstop=0
+    autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
+    autocmd FileType calendar setlocal noexpandtab shiftwidth=8 softtabstop=0
+    autocmd BufWinEnter .calendar setlocal noexpandtab shiftwidth=8 softtabstop=0
 augroup END
 
 
@@ -273,18 +250,20 @@ augroup JumpCursorOnEdit
         \ endif
 augroup END
 
+" :au[tocmd] [group] {event} {pat} [nested] {cmd}
 " Reloads vimrc on save
 augroup reload
   au!
-  autocmd BufWritePost vimrc call ReloadVimrc()
+  autocmd BufWritePost .vimrc call ReloadVimrc()
 augroup END
 
-augroup tab
+augroup autoindent
     au!
-    autocmd filetype make setlocal noexpandtab
-augroup END
+    " autocmd BufWritePre *.scss :normal migg=G`izz
+    " autocmd BufWritePre *.hbs :normal migg=G`izz
+augroup End
 
-augroup Colors
+augroup WhitespaceColors
   au!
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=green guibg=green
 augroup END
@@ -293,11 +272,7 @@ augroup END
 augroup maruku
   au!
   " autocmd BufWritePost *.md !maruku <afile>
-augroup END
-
-augroup mdExtra
-  au!
-  autocmd BufWritePost *.mde !php makehtml.php > %:p:r.html
+  " autocmd BufWritePost *.md !maruku <afile>:r //TODO: download maruku
 augroup END
 
 augroup quickFix
@@ -310,6 +285,22 @@ augroup tex
     au!
     " autocmd BufWritePost *.tex !latex %
     autocmd BufWritePost *.tex !pdflatex %
+augroup END
+
+" Reading/Writing gzip files (From vim help file)
+augroup gzip
+  autocmd!
+  autocmd BufReadPre,FileReadPre	*.gz set bin
+  autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
+  autocmd BufReadPost,FileReadPost	*.gz set nobin
+  autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
+  autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
+  autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
+
+  autocmd FileAppendPre		*.gz !gunzip <afile>
+  autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
+  autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
+  autocmd FileAppendPost		*.gz !gzip <afile>:r
 augroup END
 
 " END AUTOCMDS
@@ -328,45 +319,41 @@ command! -nargs=1 Grep :call Grep("<args>")
 "                      MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Esc
-inoremap jj <Esc>
+" imap fj <Esc>
+" imap jf <Esc>
 
-" Window management
-nnoremap w <c-w>
+" Screen navigation
+nnoremap <c-j> <c-e>
+nnoremap <c-k> <c-y>
+
+" Map marker jumping to cursor, not line
+nmap ' `
+
+" Easier folding block
+nnoremap z{ zfa{
+nnoremap z} zfa{
+
+nnoremap z[ zfa{
+nnoremap z] zfa{
 
 " Key navigation
 nnoremap j gj
 nnoremap k gk
-
-" Command line 
-noremap Q gQ
 
 " Find syntax highlight group under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" GIT Commands
-noremap <Leader>gac :Gcommit -m -a ""<LEFT>
-noremap <Leader>gc :Gcommit -m ""<LEFT>
-noremap <Leader>gs :Gstatus<CR>
-
 " Other remaps
 noremap <Leader>n :set nopaste<cr>
 noremap <Leader>p :set paste<cr>
+noremap <Leader>r :set rnu<cr>
+noremap <Leader>u :set rnu!<cr>
 noremap <Leader>vi :tabe $HOME/.vim/vimrc<CR>
 
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
-noremap <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
-noremap <Leader>s :split
-noremap <Leader>v :vnew
-noremap <Leader>t :tabedit <C-R><CR>
-
 " Open Url with the browser \w
-map <Leader>w :call Browser ()<CR>
-
-" Trigger the above todo mode
-noremap <silent> <Leader>todo :execute TodoListMode()<CR>
+map <Leader>w :call Browser()<CR>
 
 " Folds html tags
 nnoremap <leader>ft Vatzf
@@ -393,11 +380,11 @@ nnoremap <S-down> :resize +5<cr>
 nnoremap <S-up> :resize -5<cr>
 nnoremap <S-right> :vertical resize +5<cr>
 
-" switch between windows with Cmd-[H,J,K,L]
-noremap <D-S-H> <C-w>h
-noremap <D-S-J> <C-w>j
-noremap <D-S-K> <C-w>k
-noremap <D-S-L> <C-w>l
+" switch between windows with Ctrl-[h,j,k,l]
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " Tagbar mapp
 :command! -nargs=0 TT TagbarToggle
@@ -417,23 +404,40 @@ endfunction
 set statusline+=%=
 set statusline+=%{SyntaxItem()}
 
-"{{{ Open URL in Browser
+" Open URL in Browser
 function! Browser()
   let line = getline (".")
-  let line = matchstr (line,"http[^  ]*")
-  exec "!chrome ".line
-endfunction
-"}}}
+  let a:url = matchstr (line,"http[^  ]*")
+  " exec "!chrome ".line
 
-"{{{ Todo List Mode
-function! TodoListMode()
-  e ~/.todo.otl
-  Calendar
-  wincmd l
-  set foldlevel=1
-  tabnew ~/.notes.txt
-  tabfirst
-  "or 'norm! zMzr'
+  if IsWin()
+      let cmd = '!start rundll32 url.dll,FileProtocolHandler %URL%'
+  elseif has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin'
+      let cmd = 'open %URL%'
+  elseif executable('xdg-open')
+      let cmd = 'xdg-open %URL%'
+  elseif executable('firefox')
+      let cmd = 'firefox %URL% &'
+  else
+      let cmd = ''
+  endif
+
+  if len(cmd) == 0
+      redraw
+      echohl WarningMsg
+      echo "It seems that you don't have general web browser. Open URL below."
+      echohl None
+      echo a:url
+      return
+  endif
+
+  if cmd =~ '^:[A-Z]'
+      let cmd = substitute(cmd, '%URL%', '\=a:url', 'g')
+      exec cmd
+  else
+      let cmd = substitute(cmd, '%URL%', '\=shellescape(a:url)', 'g')
+      call system(cmd)
+  endif
 endfunction
 "}}}
 
