@@ -197,6 +197,12 @@ augroup templates
   " autocmd BufNewFile *.cpp silent! !cat $HOME/.vim/templates/make.cpp.txt >> Makefile
 augroup END
 
+" markdown Formatting
+augroup markdown
+    autocmd FileType markdown set textwidth=80 formatoptions+=twan
+    autocmd FileType markdown set nopaste spell
+augroup End
+
 " Allow tabs in makefiles and .calendar
 augroup tabs
     au!
