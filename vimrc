@@ -154,7 +154,9 @@ let g:syntastic_javascript_checkers = ['gjslint']
 "                      SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
-colorscheme torte
+let g:solarized_termcolors=256
+colorscheme solarized
+call togglebg#map("<F5>")
 
 " Transparent Background
 highlight Normal ctermbg=NONE
