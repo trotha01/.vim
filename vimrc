@@ -79,7 +79,6 @@ set nolazyredraw " keep redrawing screen (keep syntax highlighting)
 
 set guioptions-=T " remove toolbar
 set t_Co=256 " terminal colors
-set background=dark " Vim will try to use colors for a dark background
 set encoding=utf8
 
 set ffs=unix,dos,mac " Default file types
@@ -153,10 +152,16 @@ let g:syntastic_javascript_checkers = ['gjslint']
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Solarized
 syntax enable "Enable syntax hl
+set background=dark " Vim will try to use colors for a dark background
 let g:solarized_termcolors=256
 colorscheme solarized
-call togglebg#map("<F5>")
+call togglebg#map("<F5>") " F5 will toggle the solarized colorscheme
+
+" Nicer vimdiff
+let g:solarized_diffmode="high"
 
 " Transparent Background
 highlight Normal ctermbg=NONE
@@ -507,3 +512,6 @@ endif
 
 " END FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
+" TODO: figure out actual solarize fix
+ToggleBG
