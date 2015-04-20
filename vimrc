@@ -163,25 +163,11 @@ call togglebg#map("<F5>") " F5 will toggle the solarized colorscheme
 " Nicer vimdiff
 let g:solarized_diffmode="high"
 
-" Transparent Background
-highlight Normal ctermbg=NONE
-
-" Second paren
-highlight MatchParen ctermbg=4
-
-" Make the omnicomplete text readable
-highlight Pmenu ctermbg=white ctermfg=black
-highlight PmenuSel ctermbg=black ctermfg=white
-
 " Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 " Show trailing whitespace and spaces before a tab:
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
-" hi StatusLine ctermbg=White ctermfg=Black
-" hi VertSplit  ctermbg=White ctermfg=Black
-hi StatusLine ctermbg=Black ctermfg=White
-hi VertSplit  ctermbg=Black ctermfg=White
 " END SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
