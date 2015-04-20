@@ -1,0 +1,38 @@
+# Snippets for notes files
+
+snippet h1
+####################
+# ${1:title}       #
+####################
+endsnippet
+
+
+snippet h2
+# ${1:h2 title}
+####################
+endsnippet
+
+snippet h3
+###
+endsnippet
+
+snippet ->
+${1} -> ${2}
+endsnippet
+
+snippet /hi/
+  hello
+endsnippet
+
+snippet "(\w+) -> (\w+)"
+hello
+endsnippet
+# `!p match.group(2) -> match.group(1)` swap
+
+snippet if "if ... then (if)"
+if ${2:[[ ${1:condition} ]]}; then
+        ${0:#statements}
+fi
+endsnippet
+
+
