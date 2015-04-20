@@ -22,6 +22,14 @@
 
 set diffopt=filler,vertical
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "                      OPTIONS
