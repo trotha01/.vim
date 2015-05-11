@@ -7,9 +7,5 @@ endif
 
 augroup filetypedetect
   au! BufRead,BufNewFile *.hbs setfiletype html
-augroup END
-
-
-augroup filetypedetect
   au! BufRead,BufNewFile *.note setfiletype note
 augroup END
