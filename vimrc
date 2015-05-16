@@ -385,7 +385,7 @@ noremap <leader>sn :UltiSnipsEdit
 
 " FUNCTIONS {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
-"See syntax highlighting
+" See syntax highlighting
 function! SyntaxItem()
   return synIDattr(synID(line("."),col("."),1),"name")
 endfunction
@@ -428,46 +428,6 @@ function! Browser()
   endif
 endfunction
 "}}}
-
-function! Grep(name)
-  let l:pattern = input("Other pattern: ")
-  "let l:_name = substitute(a:name, "\\s", "*", "g")
-  let l:list=system("grep -nIR '".a:name."' * | grep -v 'svn-base' | grep '" .l:pattern. "' | cat -n -")
-  let l:num=strlen(substitute(l:list, "[^\n]", "", "g"))
-  if l:num < 1
-    echo "'".a:name."' not found"
-    return
-  endif
-
-  echo l:list
-  let l:input=input("Which?\n")
-
-  if strlen(l:input)==0
-    return
-  endif
-
-  if strlen(substitute(l:input, "[0-9]", "", "g"))>0
-    echo "Not a number"
-    return
-  endif
-
-  if l:input<1 || l:input>l:num
-    echo "Out of range"
-    return
-  endif
-
-  let l:line=matchstr("\n".l:list, "".l:input."\t[^\n]*")
-  let l:lineno=matchstr(l:line,":[0-9]*:")
-  let l:lineno=substitute(l:lineno,":","","g")
-  "echo "".l:line
-  let l:line=substitute(l:line, "^[^\t]*\t", "", "")
-  "echo "".l:line
-  let l:line=substitute(l:line, "\:.*", "", "")
-  "echo "".l:line
-  "echo "\n".l:line
-  execute ":e ".l:line
-  execute "normal ".l:lineno."gg"
-endfunction
 
 "{{{ Reload vimrc
   " Doesn't reload ReloadVimrc function itself (Which is a good thing)
