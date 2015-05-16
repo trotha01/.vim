@@ -8,32 +8,19 @@
 " " Contact Marshall @ mmoutenot@gmail.com with questions or comments.
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Options
-" => Bundles
-" => Variables
-" => Syntax
-" => Autocmds
-" => Commands
-" => Mappings
-" => Quickfix
-" => Functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set diffopt=filler,vertical
 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" OPTIONS {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      OPTIONS
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Add fuzzy finder
 " set rtp+=~/.fzf
 
@@ -120,10 +107,9 @@ endtry
 
 
 " END OPTIONS
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      BUNDLES
+" BUNDLES {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
 
@@ -134,10 +120,9 @@ let g:syntastic_always_populate_loc_list = 1
 :helptags ~/.vim/doc
 
 " END BUNDLES
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      VARIABLES
+" VARIABLES {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = "."
 
@@ -154,11 +139,9 @@ let g:syntastic_warning_symbol = '!'
 " let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['gjslint']
 " END VARIABLES
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      SYNTAX
+" SYNTAX {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Solarized
@@ -177,12 +160,11 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " END SYNTAX
+"""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" AUTOCMDS {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      AUTOCMDS
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically cd to current directory
 " backwards compatible
 augroup DirectoryChange
@@ -303,19 +285,15 @@ augroup gzip
 augroup END
 
 " END AUTOCMDS
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      COMMANDS
+" COMMANDS {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 command! -nargs=1 Grep :call Grep("<args>")
 " END COMMANDS
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      MAPPINGS
+" MAPPINGS {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Esc
 " imap fj <Esc>
@@ -390,11 +368,14 @@ nnoremap <C-l> <C-w>l
 
 " Reload vimrc on command
 noremap <leader>rv <Esc>:call ReloadVimrc()<CR>
-" END MAPPINGS
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-"                      FUNCTIONS
+" open ultisnips file
+noremap <leader>sn :UltiSnipsEdit
+
+" END MAPPINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" FUNCTIONS {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "See syntax highlighting
 function! SyntaxItem()
@@ -403,7 +384,7 @@ endfunction
 set statusline+=%=
 set statusline+=%{SyntaxItem()}
 
-" Open URL in Browser
+" Open URL in Browser {{{
 function! Browser()
   let line = getline (".")
   let a:url = matchstr (line,"http[^  ]*")
@@ -505,7 +486,8 @@ endif
 " }}}
 
 " END FUNCTIONS
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " TODO: figure out actual solarize fix
 ToggleBG
+
