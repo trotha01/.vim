@@ -14,10 +14,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
 " OPTIONS {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -138,6 +134,12 @@ let g:syntastic_warning_symbol = '!'
 " Checker type
 " let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['gjslint']
+
+" For file searching
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 " END VARIABLES
 """""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
