@@ -108,6 +108,8 @@ endtry
 
 " BUNDLES {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
+" To add a bundle, just git clone into ~/.vim/bundle/
 execute pathogen#infect()
 
 " Syntastic options (for lnext lprev to work)
@@ -301,6 +303,9 @@ command! -nargs=1 Grep :call Grep("<args>")
 " Esc
 " imap fj <Esc>
 " imap jf <Esc>
+
+" Space toggles vim folds
+nnoremap <space> za
 
 " Screen navigation
 nnoremap <c-j> <c-e>
