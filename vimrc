@@ -36,10 +36,6 @@ filetype indent on " filetype specific indenting
 
 set autoread " read a file when it is changed from the outside
 
-" Use grep
-" TODO: --color doesn't work?
-set grepprg=internal
-
 " Open split to right
 set splitright
 
