@@ -130,9 +130,6 @@ let g:syntastic_enable_signs=1
 " Error symbols
 let g:syntastic_error_symbol='x'
 let g:syntastic_warning_symbol = '!'
-" Checker type
-" let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_checkers = ['gjslint']
 
 " For file searching
 if executable('ag')
