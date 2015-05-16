@@ -8,8 +8,6 @@
 " " Contact Marshall @ mmoutenot@gmail.com with questions or comments.
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-set diffopt=filler,vertical
-
 let g:UltiSnipsExpandTrigger="<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
@@ -27,6 +25,9 @@ set cmdheight=2 " Command line height
 
 " set paste " Copy and paste into vim normally
 set mouse=a " Enable use of the mouse
+
+" open diffs in avertical split with filler lines
+set diffopt=filler,vertical
 
 syntax on "Syntax highlighting
 filetype on "Filetype detection
